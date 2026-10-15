@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hsin-Yi (Lucy) Lin</title>
+<meta name="description" content="Hsin-Yi (Lucy) Lin — mathematician and Research Scientist at Brookhaven National Laboratory working on quantum machine learning, partial differential equations, mathematical modeling and machine learning.">
+<meta property="og:title" content="Hsin-Yi (Lucy) Lin">
+<meta property="og:description" content="From kinetic transport equations to learnable quantum measurements.">
+<meta property="og:image" content="assets/fig/torus.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120f26'/%3E%3Cpath d='M12 40c10-22 30-22 40 0' fill='none' stroke='%23e39b2d' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='26' r='5' fill='%23c7a6ec'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/vendor/fonts/newsreader-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<script defer src="assets/vendor/katex/katex.min.js"></script>
+<script defer src="assets/vendor/katex/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="hero__inner">
+    <h1>Hsin-Yi Lin<span>Lucy</span></h1>
+    <p class="hero__lede">Mathematician and Research Scientist at Brookhaven National Laboratory. I started with transport equations and now design quantum machine learning models, using the same mathematics throughout.</p>
+    <ul class="hero__links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="https://github.com/hsinyilin19">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/lucy-hsinyi-lin/">LinkedIn</a></li>
+      <li><a href="mailto:hlin7@bnl.gov">hlin7@bnl.gov</a></li>
+    </ul>
+    <p class="hero__caption"><b>Live figure.</b> Tracers carried by the incompressible flow \(a=\nabla^{\perp}\psi\) on the torus \(\mathbb{T}^2\), where \(\psi\) is a random Fourier series. Fluid circling a local maximum or minimum of \(\psi\) can never mix with the rest: the unmixing result in Chapter 3 of my thesis.</p>
+  </div>
+  <button class="hero__toggle" id="flow-toggle" type="button" aria-pressed="false">Pause flow</button>
+</header>
+
+<nav class="nav" aria-label="Sections">
+  <div class="nav__in">
+    <a class="nav__name" href="#top" onclick="window.scrollTo({top:0});return false;">Hsin-Yi (Lucy) Lin</a>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#vocabulary">Connections</a>
+    <a href="#publications">Publications</a>
+    <a href="#experience">Experience</a>
+    <button class="theme-btn" id="theme" type="button">Dark</button>
+  </div>
+</nav>
+
+<main>
+
+<section id="about">
+  <div class="about">
+    <div class="prose">
+      <h2>About</h2>
+      <p>I am a Research Scientist in Computing &amp; Data Sciences at Brookhaven National Laboratory, working on quantum computing and quantum machine learning. My training is in analysis: my Ph.D. at the University of Maryland, with Pierre-Emmanuel Jabin, was on dispersion and averaging in transport equations, mixing of incompressible flows, and memory-driven models of animal migration.</p>
+      <p>Since then I have carried the same tools into machine learning (optimal transport for speech, variational analysis of deep networks, neural forecasting of chaotic geophysical systems) and into quantum computing, where I treat the <em>measurement</em> of a quantum circuit as something to be learned rather than fixed.</p>
+      <p>Before Brookhaven I was an Assistant Professor of Mathematics and Computer Science at Seton Hall University, a postdoctoral researcher at the University of Colorado Boulder, Academia Sinica and the University of Montana, and a data scientist at Bank of America. I review for ICML, ICLR and IEEE journals and conferences.</p>
+      <ul class="facts">
+        <li><span>Now</span>Research Scientist, Brookhaven National Laboratory</li>
+        <li><span>Ph.D.</span>Mathematics, University of Maryland, College Park, 2020</li>
+        <li><span>M.S., B.S.</span>Mathematics; Physics &amp; Mathematics, National Tsing Hua University</li>
+        <li><span>Tools</span>PyTorch, PennyLane, Qiskit, CUDA/CuPy, HPC clusters</li>
+      </ul>
+    </div>
+    <figure>
+      <img src="assets/headshot.jpg" width="560" height="764" alt="Portrait of Hsin-Yi (Lucy) Lin">
+      <figcaption>Upton, New York</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="research">
+  <div class="thread-intro">
+    <h2>One thread, five chapters</h2>
+    <p>Each project below asks how something is <em>carried</em>: a density along velocities, fluid along streamlines, an animal along what it remembers, probability mass from noisy to clean data, and a quantum observable along a unitary path. The chapters run in the order I worked on them.</p>
+  </div>
+
+  <article class="chapter" id="ch-averaging">
+    <div class="chapter__num">§1</div>
+    <div class="chapter__body">
+      <h3>Averaging lemmas for kinetic transport</h3>
+      <p class="chapter__meta">Ph.D. thesis, Chapter 2; with P.-E. Jabin and E. Tadmor</p>
+      <div class="chapter__cols chapter__cols--stack">
+        <div>
+          <p>A density \(f(t,x,v)\) of particles at position \(x\) with velocity \(v\) can be as rough as its data. Its <em>velocity averages</em> are better behaved: they gain fractional derivatives in \(x\). These averaging lemmas are a key source of compactness in kinetic theory and of regularity for conservation laws.</p>
+          <div class="eq">
+            $$\partial_t f + a(v)\cdot\nabla_x f = (-\Delta_v)^{\kappa/2} g$$
+            $$\rho_\varphi(t,x)=\int f(t,x,v)\,\varphi(v)\,dv \;\in\; L^2\big([0,T],H^{s}_{x,\mathrm{loc}}\big)$$
+            <p class="eq__note">Given \(f\in L^\infty_tL^{p_1}_xL^{p_2}_v\), \(g\in L^1_tL^{q_1}_xL^{q_2}_v\) and a non-degenerate \(a\in \mathrm{Lip}\), the average lies in \(H^s\) for every \(s\) below an explicit exponent \(S(p_i,q_i,\kappa,\gamma)\).</p>
+          </div>
+          <p>We introduced a <strong>commutator method</strong>: pick a multiplier \(Q\) so that its commutator \([B,Q]\) with the transport operator \(B=a(v)\cdot\nabla_x\) is positive and gains a derivative, the mechanism behind local smoothing for dispersive equations. The proof needs only elementary Fourier analysis, covers a new range of integrability assumptions, and gives a direct regularity result for measure-valued solutions of scalar conservation laws in one space dimension.</p>
+          <p class="refs"><a href="https://doi.org/10.2140/apde.2022.15.1561">Analysis &amp; PDE 15 (2022)</a>, <a href="https://arxiv.org/abs/2003.05047">arXiv:2003.05047</a>, <a href="https://doi.org/10.5802/slsedp.142">Séminaire Laurent Schwartz (2021)</a></p>
+        </div>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/averaging.jpg" width="1500" height="560" alt="Left: a striped, rough density in the x–v plane. Right: a jagged amber curve and a smooth violet curve showing the velocity average."></div>
+          <figcaption><span class="tag-src tag-src--ill">illustration</span><b>Averaging smooths.</b> Under free transport each slice \(f(t,\cdot,v)=f_0(\cdot-vt)\) stays as rough as \(f_0\), yet \(\rho_\varphi(t)=f_0*\varphi_t\) is smooth for \(t&gt;0\).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="chapter" id="ch-mixing">
+    <div class="chapter__num">§2</div>
+    <div class="chapter__body">
+      <h3>When incompressible flows cannot mix</h3>
+      <p class="chapter__meta">Ph.D. thesis, Chapter 3</p>
+      <div class="chapter__cols">
+        <div>
+          <p>A divergence-free field on the two-torus is the rotated gradient of a stream function, and the transport equation \(\partial_t f+\operatorname{div}(af)=0\) inherits a Hamiltonian structure: \(\psi\) is constant along every trajectory.</p>
+          <div class="eq">
+            $$a=\nabla^{\perp}\psi=(\partial_2\psi,\,-\partial_1\psi),\qquad \frac{d}{dt}\int_{\mathbb{T}^2}\Phi\big(\psi(x)\big)\,f(t,x)\,dx=0 .$$
+          </div>
+          <p>Using this, I showed that a flow is <strong>unmixing</strong> whenever \(\psi\) has a local maximum or minimum, and that the property survives any perturbation of \(\psi\) that is small in sup norm. Taking \(a\) to be a random Fourier series turns this into a quantitative, probabilistic statement about when mixing fails, read off from Fourier coefficients.</p>
+          <p class="refs">Thesis: <a href="https://doi.org/10.13016/t7ll-w1d3"><em>Dispersion Properties of Transport Equations and Applications</em></a>, University of Maryland, 2020.</p>
+        </div>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/torus.jpg" width="1500" height="1500" alt="Colored map of a stream function on the torus with white streamlines circling its peaks and valleys, marked with triangles."></div>
+          <figcaption><span class="tag-src tag-src--ill">illustration</span><b>Islands that never mix.</b> Level sets of a random \(\psi\) on \(\mathbb{T}^2\) with streamlines of \(\nabla^\perp\psi\). Local maxima (▲) and minima (▼) trap the fluid around them.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="chapter" id="ch-memory">
+    <div class="chapter__num">§3</div>
+    <div class="chapter__body">
+      <h3>Memory and migration</h3>
+      <p class="chapter__meta">Ph.D. thesis, Chapter 4; with W. F. Fagan and P.-E. Jabin</p>
+      <div class="chapter__cols chapter__cols--stack">
+        <div>
+          <p>Animals return to places they remember. I modeled each memory channel as a field \(M_i(t,x)\) that fades nonlinearly, reaching zero in finite time, and is refreshed by what the animal perceives through a kernel \(K\) centered at its position \(X(t)\). The animal then moves by optimal control: a Hamilton–Jacobi–Bellman value function built from how it evaluates each location.</p>
+          <div class="eq">
+            $$\partial_t M_i=\kappa_i\Big[-d_i\,\operatorname{sgn}(M_i)\sqrt{|M_i|}+u_i\,K\big(X(t),x\big)\big(E(t,x)-M_i\big)\Big]$$
+            $$H(t,x)=\sum_i w_i\,M_i(t,x)$$
+            <p class="eq__note">\(E\): environment quality, \(d_i,u_i\): decay and update rates, \(w_i\): weights that combine the channels into the evaluation \(H\).</p>
+          </div>
+          <p>Simulations in a periodic two-habitat environment show what memory must provide: <strong>periodic migration needs both short-term and long-term memory</strong>, with time scales in the right order and the ability to weigh one against the other. At the University of Montana I applied the same modeling habits to Chronic Wasting Disease, combining contact-network structure with stochastic models and data-driven inference.</p>
+          <p class="refs"><a href="https://doi.org/10.1016/j.jtbi.2020.110486">Journal of Theoretical Biology 508 (2021)</a></p>
+        </div>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/migration.png" width="1500" height="540" alt="Left: a path shuttling between two circular habitats A and B. Right: position over time switching between A and B in step with the shaded resource periods."></div>
+          <figcaption><span class="tag-src tag-src--ill">re-simulation</span><b>Following resources.</b> The two-channel memory model in an environment whose good habitat alternates between A and B. Color is time. Movement is simplified to steering toward \(\arg\max H\).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="chapter" id="ch-learning">
+    <div class="chapter__num">§4</div>
+    <div class="chapter__body">
+      <h3>Learning with transport, variations and dynamics</h3>
+      <p class="chapter__meta">2020–2025: CU Boulder, Academia Sinica, Bank of America, Seton Hall</p>
+      <div class="chapter__cols chapter__cols--stack">
+        <div>
+          <p>In machine learning I keep reaching for analysis. For speech enhancement without clean labels, I moved noisy feature distributions onto clean ones with <strong>discriminator-constrained optimal transport</strong> (NeurIPS 2021). To explain domain adaptation, a <strong>layer variational analysis</strong> treats fine-tuning as a variational problem across layers (ICLR 2023). Stochastic neighbor embedding with an α-divergence decomposes into <strong>attractive and repulsive forces</strong> (IEEE Access 2024).</p>
+          <div class="eq">
+            $$\min_{T:\;T_{\#}\mu=\nu}\;\int c\big(x,T(x)\big)\,d\mu(x)$$
+            <p class="eq__note">Monge's problem: the cheapest way to push the distribution \(\mu\) onto \(\nu\).</p>
+          </div>
+          <p>For chaotic geophysical systems I combined <strong>recurrent networks with data assimilation</strong> for scalable state estimation and forecasting (JAMES 2022) and developed Fourier reservoir computing for multi-scale quasi-geostrophic dynamics. Recent work covers retrieval-augmented prompt learning against LLM hallucination (IEEE/ACM TASLP), contrastive diffusion models, and multi-channel speech enhancement.</p>
+          <p class="refs"><a href="https://arxiv.org/abs/2111.06316">NeurIPS 2021</a>, <a href="https://arxiv.org/abs/2302.01798">ICLR 2023</a>, <a href="https://doi.org/10.1109/ACCESS.2024.3420425">IEEE Access 2024</a>, <a href="https://doi.org/10.1029/2021MS002843">JAMES 2022</a>, <a href="https://doi.org/10.1109/TASLPRO.2025.3646477">TASLP</a></p>
+        </div>
+        <figure class="fig fig--narrow">
+          <div class="frame"><img src="assets/fig/ot.png" width="1400" height="650" alt="Two density curves joined by colored lines that map quantiles of the noisy distribution onto the clean one."></div>
+          <figcaption><span class="tag-src tag-src--ill">illustration</span><b>Transporting distributions.</b> The monotone (Brenier) map pushing a broad, noisy feature distribution \(\mu\) onto a sharp, clean one \(\nu\).</figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="chapter" id="ch-quantum">
+    <div class="chapter__num">§5</div>
+    <div class="chapter__body">
+      <h3>Learnable measurements for quantum neural networks</h3>
+      <p class="chapter__meta">2024–present: Brookhaven National Laboratory and collaborators</p>
+      <div class="chapter__cols">
+        <div>
+          <p>A variational quantum circuit (VQC) encodes data, applies a trainable unitary \(U(\theta)\), and measures a <em>fixed</em> observable, usually a Pauli \(Z\). In the Heisenberg picture the observable moves instead of the state, so training traces a path \(H(\theta)=U^\dagger(\theta)H_0U(\theta)\) in the space \(\mathbb{H}(n)\) of Hermitian matrices. Why not let the measurement learn too?</p>
+          <div class="eq">
+            $$f_{\theta,\phi}(x)=\big\langle\psi_x\big|\,U^\dagger(\theta)\,\widetilde H(\phi)\,U(\theta)\,\big|\psi_x\big\rangle,\qquad \widetilde H(\phi)\in\mathbb{H}(k),\;k\le n$$
+            <p class="eq__note">\(\widetilde H(\phi)\) is a trainable \(k\)-local Hermitian observable with \(4^k\) real parameters. A fixed observable is the special case, so VQC \(\subsetneq\) ANO.</p>
+          </div>
+          <p><strong>Adaptive non-local observables (ANO)</strong> enlarge the functions a circuit can represent without adding depth. Diagonal ANO keeps that flexibility with far fewer parameters. A <strong>quasi-polar decomposition</strong> splits a trained model into a radial part (spectrum) and an angular part (Lie algebra), so its training trajectory can be read geometrically. <strong>Observable geometry</strong> uses unitary orbits, stabilizers and homogeneous spaces to count a circuit's effective degrees of freedom.</p>
+          <p>Applications so far: quantum reinforcement learning, quantum super-resolution, transfer learning of VQCs, learned measurement programs, and the Quantum Gradient Class Activation Map for interpreting hybrid models.</p>
+          <p class="refs"><a href="https://arxiv.org/abs/2504.13414">ANO, QCE 2025</a>, <a href="https://arxiv.org/abs/2507.19629">QRL, QCE 2025</a>, <a href="https://arxiv.org/abs/2601.14433">ICASSP 2026</a>, <a href="https://arxiv.org/abs/2605.15410">DANO</a>, <a href="https://arxiv.org/abs/2607.27051">Quasi-polar</a>, <a href="https://arxiv.org/abs/2607.20198">Observable geometry</a></p>
+        </div>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/q_radial.png" width="746" height="560" alt="3D scatter of training trajectories rising from dark purple to bright yellow as test accuracy improves."></div>
+          <figcaption><span class="tag-src">from the paper</span><b>Training as motion.</b> Radial trajectories \(\rho_{t,q}=\mathrm{top}_3(\lambda_{t,q})\in\mathbb{R}^3\) of quasi-polar DANO models on Yale B, colored by test accuracy. <a href="https://arxiv.org/abs/2607.27051">Ho, Li, Tseng, Lin, Chen &amp; Yoo, QCE 2026</a></figcaption>
+        </figure>
+      </div>
+
+      <div class="qgrid">
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/q_circuit.png" width="1046" height="522" alt="Quantum circuit diagram: Hadamard and Ry encoding gates, CNOT entanglers and Ry variational gates, then measurements on four qubits." loading="lazy"></div>
+          <figcaption><span class="tag-src">from the paper</span><b>The circuit.</b> Encoding \(V\) and \(L\) variational layers \(U\). The measurement at the right end is what ANO makes trainable. <a href="https://arxiv.org/abs/2605.15410">DANO, ICCCN 2026</a></figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/q_observable_space.png" width="1046" height="518" alt="Diagram: the space of Hermitian matrices split into bands H0, H1, H2, mapped to spectral classes Lambda0, Lambda1, Lambda2." loading="lazy"></div>
+          <figcaption><span class="tag-src">from the paper</span><b>Observables up to rotation.</b> \(\mathbb{H}(n)\) splits into unitary-equivalence classes labeled by spectra in \(\mathbb{R}^{2^n}\), so a diagonal observable plus a unitary reaches every class. <a href="https://arxiv.org/abs/2605.15410">DANO</a></figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/q_polar.png" width="1046" height="759" alt="Polar diagram with an orange spiral labelled model evolution, radius lambda and angle Theta." loading="lazy"></div>
+          <figcaption><span class="tag-src">from the paper</span><b>Quasi-polar coordinates.</b> A model \(\widetilde H(\lambda,\Theta)\) evolves with radius \(\lambda\sim r\) (spectrum) and angle \(\Theta\sim\vartheta\) (Lie algebra). <a href="https://arxiv.org/abs/2607.27051">QCE 2026</a></figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame"><img src="assets/fig/q_mnist.png" width="1064" height="689" alt="Line chart of MNIST test accuracy over 30 epochs; 8-local measurements climb highest while the pure VQC stays near 30 percent." loading="lazy"></div>
+          <figcaption><span class="tag-src">from the paper</span><b>Measurement locality pays.</b> MNIST test accuracy with the same circuit: widening the measured block from 2 to 8 qubits lifts accuracy well above the fixed-observable VQC. <a href="https://arxiv.org/abs/2605.15410">DANO</a></figcaption>
+        </figure>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="vocabulary">
+  <div class="prose">
+    <h2>Connections between fields</h2>
+    <p>A small dictionary of the ideas I reuse. Each row is one mathematical idea, and each column shows where it appears in my work in that field.</p>
+  </div>
+  <div class="vocab-wrap">
+  <table class="vocab">
+    <thead><tr><th scope="col">Idea</th><th scope="col">Analysis &amp; PDE</th><th scope="col">Modeling</th><th scope="col">Machine learning</th><th scope="col">Quantum computing</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Transport<small>moving mass along a field</small></th>
+        <td class="c-pde" data-field="Analysis & PDE"><span class="pill"></span>kinetic equation \(\partial_tf+a(v)\cdot\nabla_xf\)</td>
+        <td class="c-mod" data-field="Modeling"><span class="pill"></span>animal paths \(X(t)\) driven by remembered value</td>
+        <td class="c-ml" data-field="Machine learning"><span class="pill"></span>optimal transport \(T_\#\mu=\nu\) for speech</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>observables carried along \(U^\dagger H U\)</td></tr>
+      <tr><th scope="row">Commutators<small>what fails to commute, and what it buys</small></th>
+        <td class="c-pde" data-field="Analysis & PDE"><span class="pill"></span>\([B,Q]\) with a multiplier gains regularity</td>
+        <td class="empty" data-field="Modeling">—</td>
+        <td class="empty" data-field="Machine learning">—</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>Heisenberg evolution and the Lie algebra \(\mathfrak{u}(N)\)</td></tr>
+      <tr><th scope="row">Fourier analysis<small>frequencies and multipliers</small></th>
+        <td class="c-pde" data-field="Analysis & PDE"><span class="pill"></span>dispersion; random Fourier stream functions</td>
+        <td class="c-mod" data-field="Modeling"><span class="pill"></span>multi-scale quasi-geostrophic flows</td>
+        <td class="c-ml" data-field="Machine learning"><span class="pill"></span>Fourier reservoir computing</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>Pauli families as a basis of observables</td></tr>
+      <tr><th scope="row">Variational principles<small>optimize over paths or functions</small></th>
+        <td class="empty" data-field="Analysis & PDE">—</td>
+        <td class="c-mod" data-field="Modeling"><span class="pill"></span>optimal control, Hamilton–Jacobi–Bellman</td>
+        <td class="c-ml" data-field="Machine learning"><span class="pill"></span>layer variational analysis; variational dehallucination</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>variational quantum circuits and eigensolvers</td></tr>
+      <tr><th scope="row">Geometry &amp; symmetry<small>what is invariant, what moves</small></th>
+        <td class="c-pde" data-field="Analysis & PDE"><span class="pill"></span>level sets of \(\psi\) conserved by the flow</td>
+        <td class="empty" data-field="Modeling">—</td>
+        <td class="c-ml" data-field="Machine learning"><span class="pill"></span>attraction–repulsion forces in neighbor embedding</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>unitary orbits, stabilizers, polar decomposition</td></tr>
+      <tr><th scope="row">Dynamics &amp; memory<small>states that carry the past</small></th>
+        <td class="c-pde" data-field="Analysis & PDE"><span class="pill"></span>Hamiltonian structure of 2D flows</td>
+        <td class="c-mod" data-field="Modeling"><span class="pill"></span>short- and long-term memory channels</td>
+        <td class="c-ml" data-field="Machine learning"><span class="pill"></span>RNNs with data assimilation for chaotic systems</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>training trajectories \((\lambda_t,\Theta_t)\) of QNNs</td></tr>
+      <tr><th scope="row">Probability &amp; divergences<small>comparing distributions</small></th>
+        <td class="c-pde" data-field="Analysis & PDE"><span class="pill"></span>measure-valued solutions of conservation laws</td>
+        <td class="c-mod" data-field="Modeling"><span class="pill"></span>stochastic movement and epidemic spread</td>
+        <td class="c-ml" data-field="Machine learning"><span class="pill"></span>α-divergence SNE; contrastive diffusion</td>
+        <td class="c-q" data-field="Quantum computing"><span class="pill"></span>expectation values \(\langle\psi|H|\psi\rangle\) as model outputs</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="prose">
+    <h2>Publications</h2>
+    <p class="legend"><span><i class="t-q"></i>Quantum</span><span><i class="t-ml"></i>Machine learning &amp; AI</span><span><i class="t-pde"></i>Analysis &amp; PDE</span><span><i class="t-mod"></i>Modeling</span></p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter publications">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="q" aria-pressed="false">Quantum</button>
+    <button type="button" data-f="ml" aria-pressed="false">Machine learning &amp; AI</button>
+    <button type="button" data-f="pde" aria-pressed="false">Analysis &amp; PDE</button>
+    <button type="button" data-f="mod" aria-pressed="false">Modeling</button>
+    <span class="muted small" id="pub-count" aria-live="polite" style="align-self:center">23 of 23</span>
+  </div>
+  <ol class="pubs">
+    <li class="pub" data-t="q"><span class="pub__year">2026</span><div><span class="pub__title">Observable Geometry for Effective Quantum Circuits</span><span class="pub__auth">H.-H. Tseng, <b>H.-Y. Lin</b>, S. Y.-C. Chen, Y. M. Chan, T.-C. Wei, S. Yoo</span><span class="pub__venue">IEEE QCE 2026</span><span class="pub__links"><a href="https://arxiv.org/abs/2607.20198">arXiv</a></span><span class="pub__tags"><i class="t-q"></i></span></div></li>
+    <li class="pub" data-t="q"><span class="pub__year">2026</span><div><span class="pub__title">Quasi-polar Decomposition of Quantum Neural Networks via Adaptive Non-local Observables</span><span class="pub__auth">S.-H. Ho, Y. Li, H.-H. Tseng, <b>H.-Y. Lin</b>, S. Y.-C. Chen, S. Yoo</span><span class="pub__venue">IEEE QCE 2026</span><span class="pub__links"><a href="https://arxiv.org/abs/2607.27051">arXiv</a></span><span class="pub__tags"><i class="t-q"></i></span></div></li>
+    <li class="pub" data-t="q ml"><span class="pub__year">2026</span><div><span class="pub__title">Quantum Super-resolution by Adaptive Non-local Observables</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, S. Y.-C. Chen, S. Yoo</span><span class="pub__venue">IEEE ICASSP 2026</span><span class="pub__links"><a href="https://arxiv.org/abs/2601.14433">arXiv</a></span><span class="pub__tags"><i class="t-q"></i><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="q"><span class="pub__year">2026</span><div><span class="pub__title">Diagonal Adaptive Non-local Observables on Quantum Neural Networks</span><span class="pub__auth">H.-H. Tseng, Y. Li, <b>H.-Y. Lin</b>, S. Y.-C. Chen</span><span class="pub__venue">ICCCN 2026</span><span class="pub__links"><a href="https://arxiv.org/abs/2605.15410">arXiv</a></span><span class="pub__tags"><i class="t-q"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2026</span><div><span class="pub__title">Variational Dehallucination via Retrieval-Augmented Prompt Learning</span><span class="pub__auth"><b>H.-Y. Lin</b>, Y.-C. Chang, J.-T. Chien</span><span class="pub__venue">IEEE/ACM Transactions on Audio, Speech and Language Processing 34, 259–271</span><span class="pub__links"><a href="https://doi.org/10.1109/TASLPRO.2025.3646477">DOI</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="q ml"><span class="pub__year">2025</span><div><span class="pub__title">Quantum Reinforcement Learning by Adaptive Non-local Observables</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, S. Y.-C. Chen, S. Yoo</span><span class="pub__venue">IEEE QCE 2025</span><span class="pub__links"><a href="https://doi.org/10.1109/QCE65121.2025.10326">DOI</a><a href="https://arxiv.org/abs/2507.19629">arXiv</a></span><span class="pub__tags"><i class="t-q"></i><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="q"><span class="pub__year">2025</span><div><span class="pub__title">Adaptive Non-local Observable on Quantum Neural Networks</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, S. Y.-C. Chen, S. Yoo</span><span class="pub__venue">IEEE QCE 2025</span><span class="pub__links"><a href="https://doi.org/10.1109/QCE65121.2025.00206">DOI</a><a href="https://arxiv.org/abs/2504.13414">arXiv</a></span><span class="pub__tags"><i class="t-q"></i></span></div></li>
+    <li class="pub" data-t="q ml"><span class="pub__year">2025</span><div><span class="pub__title">Learning to Program Quantum Measurements for Machine Learning</span><span class="pub__auth">S. Y.-C. Chen, H.-H. Tseng, <b>H.-Y. Lin</b>, S. Yoo</span><span class="pub__venue">IEEE QCE 2025</span><span class="pub__links"><a href="https://arxiv.org/abs/2505.13525">arXiv</a></span><span class="pub__tags"><i class="t-q"></i><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2025</span><div><span class="pub__title">CGDD: Contrastive Gaussian-Dirac Diffusion Model</span><span class="pub__auth">C.-C. Chen, <b>H.-Y. Lin</b>, J.-T. Chien</span><span class="pub__venue">IEEE ICASSP 2025</span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="q ml"><span class="pub__year">2025</span><div><span class="pub__title">Transfer Learning Analysis of Variational Quantum Circuits</span><span class="pub__auth">H.-H. Tseng, <b>H.-Y. Lin</b>, S. Y.-C. Chen, S. Yoo</span><span class="pub__venue">IEEE ICASSP 2025</span><span class="pub__links"><a href="https://arxiv.org/abs/2501.01507">arXiv</a></span><span class="pub__tags"><i class="t-q"></i><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="q ml"><span class="pub__year">2025</span><div><span class="pub__title">Learning to Measure Quantum Neural Networks</span><span class="pub__auth">S. Y.-C. Chen, H.-H. Tseng, <b>H.-Y. Lin</b>, S. Yoo</span><span class="pub__venue">IEEE ICASSP 2025</span><span class="pub__links"><a href="https://arxiv.org/abs/2501.05663">arXiv</a></span><span class="pub__tags"><i class="t-q"></i><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2025</span><div><span class="pub__title">Linguistic Knowledge Transfer Learning for Speech Enhancement</span><span class="pub__auth">K.-H. Hung, X. Lu, S.-W. Fu, H.-H. Tseng, <b>H.-Y. Lin</b>, C.-W. Lin, Y. Tsao</span><span class="pub__venue">arXiv preprint</span><span class="pub__links"><a href="https://arxiv.org/abs/2503.07078">arXiv</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2024</span><div><span class="pub__title">MC-SEMamba: A Simple Multi-channel Extension of SEMamba</span><span class="pub__auth">W.-Y. Ting, W. Ren, R. Chao, <b>H.-Y. Lin</b>, Y. Tsao, F.-G. Zeng</span><span class="pub__venue">arXiv preprint</span><span class="pub__links"><a href="https://arxiv.org/abs/2409.17898">arXiv</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="q ml"><span class="pub__year">2024</span><div><span class="pub__title">Quantum Gradient Class Activation Map for Model Interpretability</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, S. Y.-C. Chen, S. Yoo</span><span class="pub__venue">IEEE SiPS 2024</span><span class="pub__links"><a href="https://doi.org/10.1109/SiPS62058.2024.00037">DOI</a><a href="https://arxiv.org/abs/2408.05899">arXiv</a></span><span class="pub__tags"><i class="t-q"></i><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2024</span><div><span class="pub__title">On the Attractive and Repulsive Forces of Generalized Stochastic Neighbor Embedding with Alpha-Divergence</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, J.-T. Chien</span><span class="pub__venue">IEEE Access 12, 90380–90394</span><span class="pub__links"><a href="https://doi.org/10.1109/ACCESS.2024.3420425">DOI</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2023</span><div><span class="pub__title">On the Robustness of Non-intrusive Speech Quality Model by Adversarial Examples</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, Y. Tsao</span><span class="pub__venue">IEEE ICASSP 2023</span><span class="pub__links"><a href="https://arxiv.org/abs/2211.06508">arXiv</a><a href="https://hsinyilin19.github.io/Demo_adversarial_example_speech_quality/">Demo</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2023</span><div><span class="pub__title">Interpretations of Domain Adaptations via Layer Variational Analysis</span><span class="pub__auth">H.-H. Tseng, <b>H.-Y. Lin</b>, K.-H. Hung, Y. Tsao</span><span class="pub__venue">ICLR 2023</span><span class="pub__links"><a href="https://arxiv.org/abs/2302.01798">arXiv</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml mod"><span class="pub__year">2022</span><div><span class="pub__title">Integrating Recurrent Neural Networks with Data Assimilation for Scalable Data-driven State Estimation</span><span class="pub__auth">S. G. Penny, T. A. Smith, J. A. Platt, T.-C. Chen, <b>H.-Y. Lin</b>, M. Goodliff, L. Fuller, H. D. I. Abarbanel</span><span class="pub__venue">Journal of Advances in Modeling Earth Systems 14</span><span class="pub__links"><a href="https://doi.org/10.1029/2021MS002843">DOI</a><a href="https://arxiv.org/abs/2109.12269">arXiv</a></span><span class="pub__tags"><i class="t-ml"></i><i class="t-mod"></i></span></div></li>
+    <li class="pub" data-t="pde"><span class="pub__year">2022</span><div><span class="pub__title">Commutator Method for Averaging Lemmas</span><span class="pub__auth">P.-E. Jabin, <b>H.-Y. Lin</b>, E. Tadmor</span><span class="pub__venue">Analysis &amp; PDE 15(6), 1561–1584</span><span class="pub__links"><a href="https://doi.org/10.2140/apde.2022.15.1561">DOI</a><a href="https://arxiv.org/abs/2003.05047">arXiv</a></span><span class="pub__tags"><i class="t-pde"></i></span></div></li>
+    <li class="pub" data-t="ml"><span class="pub__year">2021</span><div><span class="pub__title">Unsupervised Noise Adaptive Speech Enhancement by Discriminator-Constrained Optimal Transport</span><span class="pub__auth"><b>H.-Y. Lin</b>, H.-H. Tseng, X. Lu, Y. Tsao</span><span class="pub__venue">NeurIPS 2021</span><span class="pub__links"><a href="https://proceedings.neurips.cc/paper_files/paper/2021/file/a5c7b30fb632c92feb59154517223dc9-Paper.pdf">Paper</a><a href="https://arxiv.org/abs/2111.06316">arXiv</a></span><span class="pub__tags"><i class="t-ml"></i></span></div></li>
+    <li class="pub" data-t="ml mod"><span class="pub__year">2021</span><div><span class="pub__title">Fourier Reservoir Computing for Data-Driven Prediction of Multi-Scale Coupled Quasi-Geostrophic Dynamics</span><span class="pub__auth"><b>H.-Y. Lin</b>, S. G. Penny</span><span class="pub__venue">ESS Open Archive</span><span class="pub__tags"><i class="t-ml"></i><i class="t-mod"></i></span></div></li>
+    <li class="pub" data-t="pde"><span class="pub__year">2021</span><div><span class="pub__title">A New Commutator Method for Averaging Lemmas</span><span class="pub__auth">P.-E. Jabin, <b>H.-Y. Lin</b>, E. Tadmor</span><span class="pub__venue">Séminaire Laurent Schwartz — EDP et applications</span><span class="pub__links"><a href="https://doi.org/10.5802/slsedp.142">DOI</a></span><span class="pub__tags"><i class="t-pde"></i></span></div></li>
+    <li class="pub" data-t="mod"><span class="pub__year">2021</span><div><span class="pub__title">Memory-driven Movement Model for Periodic Migrations</span><span class="pub__auth"><b>H.-Y. Lin</b>, W. F. Fagan, P.-E. Jabin</span><span class="pub__venue">Journal of Theoretical Biology 508, 110486</span><span class="pub__links"><a href="https://doi.org/10.1016/j.jtbi.2020.110486">DOI</a></span><span class="pub__tags"><i class="t-mod"></i></span></div></li>
+  </ol>
+  <p class="muted small" style="margin-top:1.2rem">Ph.D. thesis: <a href="https://doi.org/10.13016/t7ll-w1d3"><em>Dispersion Properties of Transport Equations and Applications</em></a>, University of Maryland, College Park, 2020. Advisor: Pierre-Emmanuel Jabin.</p>
+</section>
+
+<section id="experience">
+  <div class="prose">
+    <h2>Experience</h2>
+  </div>
+  <ol class="timeline">
+    <li><span class="when">2026 – present</span><span class="what">Research Scientist</span>, <span class="where">Brookhaven National Laboratory, Computing &amp; Data Sciences</span>
+      <p>Quantum computing and quantum machine learning; collaborations on applications of quantum algorithms and the search for quantum advantage.</p></li>
+    <li><span class="when">2023 – 2025</span><span class="what">Assistant Professor</span>, <span class="where">Seton Hall University, Mathematics &amp; Computer Science</span>
+      <p>Led projects on foundation models, agentic AI and quantum–classical hybrid models with a focus on trustworthy, interpretable AI; GPU-accelerated and batched quantum simulation; mentored undergraduate, graduate and postdoctoral researchers; built ML and QML curriculum.</p></li>
+    <li><span class="when">2023</span><span class="what">Postdoctoral Researcher</span>, <span class="where">University of Montana</span>
+      <p>Social-network-informed models of Chronic Wasting Disease spread, combining stochastic modeling with data-driven inference.</p></li>
+    <li><span class="when">2022</span><span class="what">Postdoctoral Researcher</span>, <span class="where">Academia Sinica, Research Center for IT Innovation</span>
+      <p>Optimal-transport and adversarial methods for speech enhancement and domain adaptation.</p></li>
+    <li><span class="when">2021 – 2022</span><span class="what">Data Scientist</span>, <span class="where">Bank of America</span>
+      <p>NLP and OCR pipelines with automated model monitoring under governance standards.</p></li>
+    <li><span class="when">2020 – 2021</span><span class="what">Postdoctoral Researcher</span>, <span class="where">University of Colorado Boulder</span>
+      <p>Scalable RNN, Transformer and TCN forecasting of chaotic geophysical systems; recurrent networks with data assimilation.</p></li>
+    <li><span class="when">2014 – 2020</span><span class="what">Ph.D. in Mathematics</span>, <span class="where">University of Maryland, College Park</span>
+      <p>Thesis on transport equations: averaging lemmas, unmixing flows on the torus, and memory-driven migration.</p></li>
+    <li><span class="when">2007 – 2013</span><span class="what">M.S. in Mathematics; B.S. in Physics &amp; Mathematics</span>, <span class="where">National Tsing Hua University, Taiwan</span></li>
+  </ol>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>Hsin-Yi (Lucy) Lin</strong><br>
+    <span class="muted">Brookhaven National Laboratory, Upton, NY 11973</span>
+  </div>
+  <ul>
+    <li><a href="mailto:hlin7@bnl.gov">hlin7@bnl.gov</a></li>
+    <li><a href="mailto:hsinyi.lin13@gmail.com">hsinyi.lin13@gmail.com</a></li>
+    <li><a href="https://github.com/hsinyilin19">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/lucy-hsinyi-lin/">LinkedIn</a></li>
+    <li><a href="https://www.bnl.gov/staff/hlin7">BNL staff page</a></li>
+  </ul>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
